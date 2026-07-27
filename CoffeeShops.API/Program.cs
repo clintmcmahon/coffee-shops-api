@@ -32,7 +32,7 @@ builder.Services.AddControllers()
         .AddRouteComponents("odata", edmModel));
 
 // Configure DbContext with MySQL
-var connectionString = builder.Configuration.GetConnectionString("CoffeeMapConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeShopsDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
