@@ -160,3 +160,31 @@ The `CoffeeShop` entity includes 60+ properties:
 - DbContext is used directly without an additional repository layer
 - All endpoints return JSON responses
 - CORS is configured to allow all origins (adjust for production)
+
+## Shop photos
+
+Stored photo URLs from the harvester are time-limited Google links that expire within weeks. The app loads photos through these endpoints instead:
+
+- `GET /shops/{placeId}/photos`: up to 10 photos for the detail carousel, with author attributions (Google requires showing them).
+- `GET /shops/{placeId}/photo?i=0&w=800`: 302 redirect to a fresh image. Widths snap to 400, 800, 1200 or 1600.
+
+Both resolve through the Places API (New) and cache in memory: the photo list for 12 hours, image URLs for 6. Only shops in the database are served, so the endpoint can't proxy arbitrary places.
+
+Config: `GoogleApi:ApiKey` in `appsettings.Production.json` on the server (rsync doesn't overwrite it), or `GoogleApi__ApiKey` in the systemd unit. The key needs Places API (New) enabled. Without a key both endpoints return 503 and the app falls back to stored URLs.
+
+## Passport offers
+
+`GET /passport/offers` serves partner offers (a free or two-for-one drink) that are active today. They live in `CoffeeShops.API/Data/passport-offers.json` and ship with each deploy:
+
+```json
+{ "offers": [
+  { "id": "2027-spyhouse-bogo", "placeId": "ChIJ...", "title": "Buy one drink, get one free",
+    "terms": "Once per person.", "startsOn": "2027-01-01", "endsOn": "2027-12-31" }
+] }
+```
+
+Never reuse an `id`: the app records redemptions by id, so a reused id shows as already used. A malformed file serves no offers and logs an error instead of failing.
+
+## Restoring curated shops
+
+`db/restore-2026-10-20/` has reviewed SQL for bringing deleted shops back, in three groups, plus `undo.sql`. Read `restore-review.md` first.

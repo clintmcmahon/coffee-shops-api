@@ -1,0 +1,4 @@
+{
+  "_format": "Each offer: id (unique, never reused), placeId, title (shown on the shop page), terms, startsOn and endsOn (YYYY-MM-DD, inclusive). Only offers active today are served.",
+  "offers": []
+}

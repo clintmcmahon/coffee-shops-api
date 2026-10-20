@@ -40,6 +40,9 @@ builder.Services.AddDbContext<CoffeeShopsDbContext>(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICacheService, CacheService>();
 
+// Shop photos via Google Places. Key from GoogleApi:ApiKey (env: GoogleApi__ApiKey).
+builder.Services.AddHttpClient<GooglePlacePhotoService>(client => client.Timeout = TimeSpan.FromSeconds(10));
+
 // Add CORS
 builder.Services.AddCors(options =>
 {
