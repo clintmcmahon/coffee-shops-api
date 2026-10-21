@@ -12,6 +12,8 @@ public class CoffeeShopsDbContext : DbContext
 
     public DbSet<CoffeeShop> CoffeeShops { get; set; }
 
+    public DbSet<Ranking> Rankings { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -1,0 +1,19 @@
+{
+  "_format": "tag -> placeIds. Only listed tags are served by GET /shops/tags. _toCheck holds candidates that are not served until moved into a tag.",
+  "skyway": [
+    "ChIJ-Q8v-U4zs1IRtNvmoHvikII",
+    "ChIJAY3NAf0zs1IR3OCaHc5Lmxg",
+    "ChIJCZo9G10zs1IRWujU-U1ThNs",
+    "ChIJo87v4LEss1IReKtgUnmjud0",
+    "ChIJdSh8xnxf94cR_CihBNfVErY"
+  ],
+  "_toCheck": {
+    "skyway": {
+      "ChIJi5UUpDwzs1IREmfYyt6ObGQ": "Gray Fox Coffee & Wine",
+      "ChIJdybe-wgzs1IRps3E-SpOJ-w": "Cafe Ceres",
+      "ChIJQ0QDk4Uzs1IReB5O7Li6X9Y": "Spyhouse Coffee Roasters | Downtown / Emery",
+      "ChIJwxN9YpMzs1IR2ZtoLc6Lglg": "Socca Café",
+      "ChIJn2HbriTV94cR3lk3NNbLxes": "River Valley Coffee"
+    }
+  }
+}
